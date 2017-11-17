@@ -1,11 +1,14 @@
 import './bootstrap.js';
-import App from './App'
+import App from './App';
+import BootstrapVue from 'bootstrap-vue'
 import router from './routes';
 
+Vue.use(BootstrapVue);
+
 new Vue({
-	el: '#admin-app',
+	el: '#app',
     template: '<App/>',
-	router : router,
+	router,
     components: {
         App
     }
