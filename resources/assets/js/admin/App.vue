@@ -23,7 +23,7 @@ export default {
   
 </style>
 <style lang="scss">
-  // Import Main styles for this application
+  /*Import Main styles for this application*/
 
-  //  @import './scss/style';
+    /*@import './scss/style';*/
 </style>
