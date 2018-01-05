@@ -5,7 +5,6 @@ import Footer from './Footer.vue'
 import Header from './Header.vue'
 import Sidebar from './Sidebar.vue'
 import Switch from './Switch.vue'
-import Test from './Test.vue'
 
 export {
   Aside,
@@ -15,5 +14,4 @@ export {
   Header,
   Sidebar,
   Switch,
-  Test
 }

@@ -1,4 +1,5 @@
 import Errors from './Errors';
+import axios from 'axios';
 
 class Form {
     /**
@@ -29,7 +30,18 @@ class Form {
 
         return data;
     }
-
+    
+    /**
+     * Manualy add field in form
+     * @param {type} object
+     */
+    addParam(params) {
+        let items = params || {};
+        for (let item in items) {
+            this.originalData[item] = items[item];
+            this[item] = items[item];
+        }
+    }
 
     /**
      * Reset the form fields.

@@ -11,11 +11,16 @@
                                 <form v-on:submit.prevent = "handleLogin">
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i class="icon-user"></i></span>
-                                        <input type="text" class="form-control" placeholder="Email" v-model="login.email">
+                                        <input type="text" class="form-control" placeholder="Email" v-model="form.username" :class="{ 'is-invalid': form.errors.any() }">
                                     </div>
                                     <div class="input-group mb-4">
                                         <span class="input-group-addon"><i class="icon-lock"></i></span>
-                                        <input type="password" class="form-control" placeholder="Password" v-model="login.password">
+                                        <input type="password" class="form-control" placeholder="Password" v-model="form.password" :class="{ 'is-invalid': form.errors.any() }">
+                                    </div>
+                                    <div class="row" v-if="form.errors.any()">
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ form.errors.errors.message }}
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
@@ -26,8 +31,10 @@
                                         </div>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
+                        
                         <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
                             <div class="card-body text-center">
                                 <div>
@@ -45,20 +52,32 @@
 </template>
 
 <script>
-    export default {
-        name: 'Login',
-        data() {
-            return {
-                login: {
-                    email: '',
-                    password: ''
-                }
-            };
-        },
-        methods: {
-            handleLogin () {
-                console.log('test');
-            }
-        }
+import { clientId, clientSecret } from "../../../env";
+export default {
+  name: "Login",
+  data() {
+    return {
+    form: new Form({
+        username: "tk@div-art.com",
+        password: "111111111"
+      })
+    };
+    
+  },
+  methods: {
+    handleLogin() {
+      this.form.addParam({
+        client_id: clientId,
+        client_secret: clientSecret,
+        grant_type: "password"
+      });
+      const authUser = {};
+      this.form.post("/oauth/token").then(response => {
+        authUser.access_token = response.access_token;
+        authUser.refresh_token = response.refresh_token;
+        window.localStorage.setItem("authUser", JSON.stringify(authUser));
+      });
     }
+  }
+};
 </script>
