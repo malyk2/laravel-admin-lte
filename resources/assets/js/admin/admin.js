@@ -9,8 +9,6 @@ let publicPages = ['/pages/login'];
 
 router.beforeEach((to, from, next) => {
     next();
-    //test editor1
-
     
 //    if (authUser) {
 //        next();

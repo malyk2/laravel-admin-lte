@@ -4,6 +4,7 @@ class Errors {
      */
     constructor() {
         this.errors = {};
+        this.message = '';
     }
 
 
@@ -43,7 +44,8 @@ class Errors {
      * @param {object} errors
      */
     record(errors) {
-        this.errors = errors;
+        this.errors = errors.errors;
+        this.message = errors.message;
     }
 
 

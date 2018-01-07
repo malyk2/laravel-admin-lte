@@ -9,17 +9,24 @@
                                 <h1>Login</h1>
                                 <p class="text-muted">Sign In to your account</p>
                                 <form v-on:submit.prevent = "handleLogin">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-addon"><i class="icon-user"></i></span>
-                                        <input type="text" class="form-control" placeholder="Email" v-model="form.username" :class="{ 'is-invalid': form.errors.any() }">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                                            <input type="text" class="form-control" placeholder="Email" v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }">
+                                        </div>
+                                        <small id="emailHelp" class="form-text text-danger" v-if="form.errors.has('email')" v-html="form.errors.get('email')"></small>
                                     </div>
-                                    <div class="input-group mb-4">
-                                        <span class="input-group-addon"><i class="icon-lock"></i></span>
-                                        <input type="password" class="form-control" placeholder="Password" v-model="form.password" :class="{ 'is-invalid': form.errors.any() }">
+
+                                    <div class="form-group">
+                                        <div class="input-group mb-4">
+                                            <span class="input-group-addon"><i class="icon-lock"></i></span>
+                                            <input type="password" class="form-control" placeholder="Password" v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }">
+                                        </div>
+                                        <small id="emailHelp" class="form-text text-danger" v-if="form.errors.has('password')" v-html="form.errors.get('password')"></small>
                                     </div>
-                                    <div class="row" v-if="form.errors.any()">
+                                    <div class="input-group mb-5" v-if="form.errors.any()">
                                         <div class="alert alert-danger" role="alert">
-                                            {{ form.errors.errors.message }}
+                                            {{ form.errors.message }}
                                         </div>
                                     </div>
                                     <div class="row">
@@ -34,7 +41,7 @@
 
                             </div>
                         </div>
-                        
+
                         <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
                             <div class="card-body text-center">
                                 <div>
@@ -57,25 +64,26 @@ export default {
   name: "Login",
   data() {
     return {
-    form: new Form({
-        username: "tk@div-art.com",
-        password: "111111111"
+      form: new Form({
+        email: "tk@div-art.com",
+        password: ""
       })
     };
-    
   },
   methods: {
     handleLogin() {
-      this.form.addParam({
-        client_id: clientId,
-        client_secret: clientSecret,
-        grant_type: "password"
-      });
+      //   this.form.addParam({
+      //     client_id: clientId,
+      //     client_secret: clientSecret,
+      //     grant_type: "password"
+      //   });
       const authUser = {};
-      this.form.post("/oauth/token").then(response => {
-        authUser.access_token = response.access_token;
-        authUser.refresh_token = response.refresh_token;
-        window.localStorage.setItem("authUser", JSON.stringify(authUser));
+      this.form.post("/api/admin/login").then(response => {
+        console.log(response);
+        // this.form.errors.has('password');
+        // authUser.access_token = response.access_token;
+        // authUser.refresh_token = response.refresh_token;
+        // window.localStorage.setItem("authUser", JSON.stringify(authUser));
       });
     }
   }
