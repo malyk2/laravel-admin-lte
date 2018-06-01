@@ -66,12 +66,14 @@ export default {
     return {
       form: new Form({
         email: "tk@div-art.com",
-        password: ""
+        password: "q"
       })
     };
   },
   methods: {
     handleLogin() {
+        // this.$root.$refs.toastr.e("ERRROR MESSAGE");
+        this.$toastr.e("ERRROR MESSAGE");
       //   this.form.addParam({
       //     client_id: clientId,
       //     client_secret: clientSecret,

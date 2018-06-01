@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Form from '../libs/Form';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 window.Vue = Vue;
 Vue.use(VueRouter);

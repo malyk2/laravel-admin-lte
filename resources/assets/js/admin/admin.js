@@ -1,9 +1,11 @@
 import './bootstrap.js';
 import App from './App';
-import BootstrapVue from 'bootstrap-vue'
+import BootstrapVue from 'bootstrap-vue';
+import Toastr from 'vue-toastr';
 import router from './routes';
 
 Vue.use(BootstrapVue);
+Vue.use(Toastr);
 
 let publicPages = ['/pages/login'];
 
