@@ -11,6 +11,7 @@ services:
         links:
             - app
     app:
+        container_name: lv-app
         build:
             context: ./
             dockerfile: deploy/app.docker
