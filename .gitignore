@@ -16,3 +16,4 @@ error\.log
 access\.log
 
 nbproject/
+/public/js/admin/admin.js
