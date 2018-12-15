@@ -7,11 +7,11 @@ services:
         volumes:
             - ./:/var/www
         ports:
-            - "8080:80"
+            - "80:80"
         links:
             - app
     app:
-        container_name: lv-app
+        container_name: larvueadminda_app_1
         build:
             context: ./
             dockerfile: deploy/app.docker
@@ -28,15 +28,20 @@ services:
             - "REDIS_PORT=6379"
             - "REDIS_HOST=cache"
         extra_hosts:
-            - "larvueadmin.dda:172.24.0.1"
+            - "larvueadmin.dda:172.19.0.1"
     node:
-        container_name: lv-node
+        container_name: larvueadminda_node_1
         build:
             context: ./
             dockerfile: deploy/node.docker
         volumes:
             - ./:/root/project
         tty: true
+        environment:
+            - "REDIS_PORT=6379"
+            - "REDIS_HOST=cache"
+        extra_hosts:
+            - "larvueadmin.dda:172.19.0.1"
     database:
         image: mysql:5.7
         environment:

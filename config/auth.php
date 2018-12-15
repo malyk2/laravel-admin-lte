@@ -99,4 +99,11 @@ return [
         ],
     ],
 
+    'passport' => [
+        'grand' => [
+            'client_id' => env('PASSPORT_GRAND_CLIENT_ID'),
+            'client_secret' => env('PASSPORT_GRAND_CLIENT_SECRET'),
+        ],
+    ],
+
 ];
