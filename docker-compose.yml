@@ -31,9 +31,10 @@ services:
             - "larvueadmin.dda:172.19.0.1"
     node:
         container_name: larvueadminda_node_1
-        build:
-            context: ./
-            dockerfile: deploy/node.docker
+        image: node:8.12
+        # build:
+        #     context: ./
+        #     dockerfile: deploy/node.docker
         volumes:
             - ./:/root/project
         tty: true
@@ -42,6 +43,7 @@ services:
             - "REDIS_HOST=cache"
         extra_hosts:
             - "larvueadmin.dda:172.19.0.1"
+        working_dir: /root/project
     database:
         image: mysql:5.7
         environment:
