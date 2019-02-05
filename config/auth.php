@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
         ],
     ],
@@ -96,6 +96,13 @@ return [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
+        ],
+    ],
+
+    'passport' => [
+        'grand' => [
+            'client_id' => env('PASSPORT_GRAND_CLIENT_ID'),
+            'client_secret' => env('PASSPORT_GRAND_CLIENT_SECRET'),
         ],
     ],
 
