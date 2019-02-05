@@ -59,14 +59,13 @@
 </template>
 
 <script>
-import { clientId, clientSecret } from "../../../env";
 export default {
   name: "Login",
   data() {
     return {
       form: new Form({
         email: "tk@div-art.com",
-        password: "q"
+        password: "11111111"
       })
     };
   },
