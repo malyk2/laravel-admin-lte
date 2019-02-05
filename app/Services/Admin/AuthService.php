@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Repositories\UserRepository;
 use App\User;
+use App\Http\Resources\Admin\User\Short as UserShortResourse;
 
 class AuthService extends CoreService
 {
@@ -27,7 +28,9 @@ class AuthService extends CoreService
 
             $tokens = $this->getPassportTokens($data);
 
-            return response()->result($tokens, 'You was successfully logged in');
+            $result = (new UserShortResourse($me))->additional(compact('tokens'));
+
+            return response()->result($result, 'You was successfully logged in');
 
         } else {
             customThrow('Incorrect email or password', 422);
@@ -60,8 +63,8 @@ class AuthService extends CoreService
         $passwordParams = [
             'form_params' => [
                 'grant_type' => 'password',
-                'client_id' => config('auth.passport.client_id'),
-                'client_secret' => config('auth.passport.client_secret'),
+                'client_id' => config('auth.passport.grand.client_id'),
+                'client_secret' => config('auth.passport.grand.client_secret'),
                 'username' => array_get($data, 'email'),
                 'password' => array_get($data, 'password'),
                 'scope' => '*',

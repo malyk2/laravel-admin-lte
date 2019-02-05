@@ -65,7 +65,7 @@ export default {
     return {
       form: new Form({
         email: "tk@div-art.com",
-        password: "11111111"
+        password: "111111111"
       })
     };
   },
